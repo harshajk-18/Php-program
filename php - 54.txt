@@ -1,0 +1,41 @@
+
+<?php
+$q = [];
+
+function add(&$q, $name) {
+    $q[] = $name;
+    echo "$name added.\n";
+}
+
+function serve(&$q) {
+    if (empty($q)) {
+        echo "Queue empty.\n";
+        return;
+    }
+    echo array_shift($q) . " served.\n";
+}
+
+function show($q) {
+    if (empty($q)) {
+        echo "Queue empty.\n";
+    } else {
+        echo "Queue: " . implode(", ", $q) . "\n";
+    }
+}
+
+add($q, "Alice");
+add($q, "Bob");
+add($q, "Charlie");
+show($q);
+
+serve($q);
+show($q);
+
+add($q, "David");
+show($q);
+
+serve($q);
+serve($q);
+serve($q);
+serve($q);
+?>
