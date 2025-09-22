@@ -1,0 +1,10 @@
+<?php
+// Original string
+$text = "The dog barked at another dog near the doghouse.";
+
+// Replace all whole-word occurrences of "dog" with "cat"
+$updatedText = preg_replace("/\bdog\b/", "cat", $text);
+
+// Display the result
+echo $updatedText;
+?>
