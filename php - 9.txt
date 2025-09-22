@@ -1,0 +1,90 @@
+<?php
+// ----------------------------
+// 1. Purchase Calculator
+// ----------------------------
+if (isset($_POST['price1'])) {
+    $price1 = $_POST['price1'];
+    $qty1 = $_POST['qty1'];
+    $price2 = $_POST['price2'];
+    $qty2 = $_POST['qty2'];
+    $price3 = $_POST['price3'];
+    $qty3 = $_POST['qty3'];
+
+    $subtotal = ($price1 * $qty1) + ($price2 * $qty2) + ($price3 * $qty3);
+    $tax = $subtotal * 0.10;
+    $total = $subtotal + $tax;
+
+    echo "<h3>Purchase Results:</h3>";
+    echo "Subtotal: ₹" . number_format($subtotal, 2) . "<br>";
+    echo "Tax (10%): ₹" . number_format($tax, 2) . "<br>";
+    echo "Total Cost: ₹" . number_format($total, 2) . "<br><hr>";
+}
+?>
+
+<!-- Purchase Calculator Form -->
+<form method="post">
+    <h3>Purchase Calculator</h3>
+    Item 1 Price: <input type="number" step="0.01" name="price1" required>
+    Qty: <input type="number" name="qty1" required><br>
+    Item 2 Price: <input type="number" step="0.01" name="price2" required>
+    Qty: <input type="number" name="qty2" required><br>
+    Item 3 Price: <input type="number" step="0.01" name="price3" required>
+    Qty: <input type="number" name="qty3" required><br>
+    <input type="submit" value="Calculate">
+</form>
+<hr>
+
+<?php
+// ----------------------------
+// 2. Greeting Form
+// ----------------------------
+if (isset($_POST['username'])) {
+    $name = trim($_POST['username']);
+    if ($name === "") {
+        echo "<p style='color:red;'>Error: Name field cannot be blank.</p><hr>";
+    } else {
+        echo "<p>Hello, Welcome to Everyone!</p>";
+        echo "<p>Have a nice day!!</p><hr>";
+    }
+}
+?>
+
+<!-- Greeting Form -->
+<form method="post">
+    <h3>Greeting Form</h3>
+    Enter your name: <input type="text" name="username">
+    <input type="submit" value="Greet Me">
+</form>
+<hr>
+
+<?php
+// ----------------------------
+// 3. Drink Deal Function
+// ----------------------------
+function deal($costA, $sizeA, $costB, $sizeB) {
+    $valueA = $costA / $sizeA;
+    $valueB = $costB / $sizeB;
+
+    if ($valueA < $valueB) {
+        return "Drink A is a better deal.";
+    } elseif ($valueB < $valueA) {
+        return "Drink B is a better deal.";
+    } else {
+        return "Both drinks offer the same value.";
+    }
+}
+
+echo "<h3>Drink Deal Result:</h3>";
+echo deal(25, 11, 23, 9);
+echo "<hr>";
+
+// ----------------------------
+// 4. Variable Interpolation Snippet
+// ----------------------------
+$thisVar = "this";
+$that = "that";
+$the_other = 2.2000000000;
+
+echo "<h3>Variable Interpolation Output:</h3>";
+echo "$thisVar,$not_set,$that+$the_other"; // Will give undefined variable notice for $not_set
+?>
