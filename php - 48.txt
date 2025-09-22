@@ -1,0 +1,29 @@
+<?php
+$records = [
+    ["id" => 1, "name" => "Alice", "score" => 85],
+    ["id" => 2, "name" => "Bob", "score" => 90],
+    ["id" => 3, "name" => "Charlie", "score" => 78],
+];
+
+// Print 2nd record
+print_r($records[1]);
+
+// Print all records
+foreach ($records as $i => $rec) {
+    echo "Record #" . ($i + 1) . ": {$rec['name']} scored {$rec['score']}\n";
+}
+
+// Read CSV if exists
+if (file_exists("data.csv")) {
+    $handle = fopen("data.csv", "r");
+    $count = 1;
+    while ($data = fgetcsv($handle)) {
+        echo "CSV Record #$count: " . implode(", ", $data) . "\n";
+        $count++;
+    }
+    fclose($handle);
+} else {
+    echo "CSV file not found.\n";
+}
+?>
+
