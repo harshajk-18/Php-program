@@ -1,0 +1,25 @@
+<?php
+$players = [
+    ["name" => "Alice", "points" => 24, "assists" => 7, "rebounds" => 10],
+    ["name" => "Bob", "points" => 30, "assists" => 5, "rebounds" => 8],
+    ["name" => "Charlie", "points" => 18, "assists" => 10, "rebounds" => 12],
+];
+
+$weights = ["points" => 0.5, "assists" => 0.3, "rebounds" => 0.2];
+
+foreach ($players as &$p) {
+    $p['performance'] = $p['points'] * $weights['points'] + $p['assists'] * $weights['assists'] + $p['rebounds'] * $weights['rebounds'];
+}
+unset($p);
+
+$avg = array_sum(array_column($players, 'performance')) / count($players);
+
+usort($players, fn($a, $b) => $b['performance'] <=> $a['performance']);
+
+echo "Average performance: " . round($avg, 2) . "\n\n";
+echo "Player rankings:\n";
+foreach ($players as $i => $p) {
+    echo ($i + 1) . ". {$p['name']} - Performance: " . round($p['performance'], 2) . "\n";
+}
+?>
+
