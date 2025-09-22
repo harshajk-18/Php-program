@@ -1,0 +1,18 @@
+<?php
+echo "<h2>Rounding Values in PHP</h2>";
+
+// Sample values
+$values = [1.65, 1.65, -1.54];
+
+echo "<strong>Original Values:</strong> ";
+print_r($values);
+echo "<br><br>";
+
+echo "<strong>Rounded Values (1 decimal place):</strong><br>";
+
+// Round each value to 1 decimal place
+foreach ($values as $value) {
+    $rounded = round($value, 1); // 1 decimal place
+    echo "Original: $value => Rounded: $rounded<br>";
+}
+?>
