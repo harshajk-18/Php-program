@@ -1,0 +1,93 @@
+
+<?php
+// ------------------ 1. PURCHASE CALCULATOR ------------------
+echo "<h2>Purchase Calculator</h2>";
+$price1 = 50; $qty1 = 2;
+$price2 = 30; $qty2 = 3;
+$price3 = 20; $qty3 = 4;
+
+$subtotal = ($price1 * $qty1) + ($price2 * $qty2) + ($price3 * $qty3);
+$tax = $subtotal * 0.10;
+$total = $subtotal + $tax;
+
+echo "Subtotal: ₹" . number_format($subtotal, 2) . "<br>";
+echo "Tax (10%): ₹" . number_format($tax, 2) . "<br>";
+echo "Total Cost: ₹" . number_format($total, 2) . "<br><hr>";
+
+// ------------------ 2. PASSING INFO BETWEEN PAGES (Simulated) ------------------
+echo "<h2>Passing Info Between Pages Example</h2>";
+$name = "Harshada"; // normally from form POST
+echo "Hello, $name! This data could be passed using POST, GET, or SESSION.<hr>";
+
+// ------------------ 3. GREETING FORM ------------------
+echo "<h2>Greeting Form</h2>";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['greet_name'])) {
+    $user_name = trim($_POST['greet_name']);
+    if ($user_name == "") {
+        echo "<p style='color:red;'>Error: Name cannot be blank.</p>";
+    } else {
+        echo "Hello, Welcome to Everyone!<br>Have a nice day, $user_name!!<br>";
+    }
+}
+?>
+<form method="post">
+    Enter your name: <input type="text" name="greet_name">
+    <input type="submit" value="Greet Me">
+</form>
+<hr>
+
+<?php
+// ------------------ 4. SOFT DRINK COMPARISON ------------------
+echo "<h2>Soft Drink Comparison</h2>";
+function deal($cost, $size) {
+    return $cost / $size;
+}
+
+$drinkA = deal(25, 11);
+$drinkB = deal(23, 9);
+
+echo "Cost per liter of Drink A: ₹" . number_format($drinkA, 2) . "<br>";
+echo "Cost per liter of Drink B: ₹" . number_format($drinkB, 2) . "<br>";
+
+if ($drinkA < $drinkB) {
+    echo "Choose Drink A to save money!<br>";
+} else {
+    echo "Choose Drink B to save money!<br>";
+}
+echo "<hr>";
+
+// ------------------ 5. PREDICT OUTPUT SNIPPET ------------------
+echo "<h2>Predict Output Snippet</h2>";
+$thisVar = "this"; 
+$that = "that"; 
+$the_other = 2.2000000000;
+print("$thisVar, , " . ($that + $the_other)); 
+echo "<hr>";
+
+// ------------------ 6. STUDENT GRADE CALCULATION ------------------
+echo "<h2>Student Grades</h2>";
+$students = [
+    "Ananya" => 92,
+    "Rahul"  => 78,
+    "Priya"  => 65,
+    "Vikram" => 48,
+    "Meera"  => 33
+];
+
+foreach ($students as $name => $marks) {
+    if ($marks >= 90) {
+        $grade = "A+";
+    } elseif ($marks >= 80) {
+        $grade = "A";
+    } elseif ($marks >= 70) {
+        $grade = "B";
+    } elseif ($marks >= 60) {
+        $grade = "C";
+    } elseif ($marks >= 50) {
+        $grade = "D";
+    } else {
+        $grade = "F (Fail)";
+    }
+    echo "Student: $name | Marks: $marks | Grade: $grade <br>";
+}
+?>
