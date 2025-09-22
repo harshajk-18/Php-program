@@ -1,0 +1,19 @@
+<?php
+echo "<h2>Chess Board in PHP</h2>";
+echo "<table width='400px' height='400px' cellspacing='0' cellpadding='0' border='1'>";
+
+for ($row = 1; $row <= 8; $row++) {
+    echo "<tr>";
+    for ($col = 1; $col <= 8; $col++) {
+        // Check if sum of row and column is even or odd
+        if (($row + $col) % 2 == 0) {
+            echo "<td bgcolor='#FFFFFF'></td>"; // White square
+        } else {
+            echo "<td bgcolor='#000000'></td>"; // Black square
+        }
+    }
+    echo "</tr>";
+}
+
+echo "</table>";
+?>
