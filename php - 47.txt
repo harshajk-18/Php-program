@@ -1,0 +1,16 @@
+<?php
+$x = array(1, 2, 3, 4, 5);
+
+// Let's say we want to delete the element with value 3
+$key = array_search(3, $x);
+if ($key !== false) {
+    unset($x[$key]);
+}
+
+// Re-index the array to have continuous numeric keys
+$x = array_values($x);
+
+// Print the updated array
+print_r($x);
+?>
+
