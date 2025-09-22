@@ -1,0 +1,14 @@
+<?php
+// Create a 3x3 matrix (multidimensional array)
+$matrix = array(
+    array(1, 2, 3),      // Row 0
+    array(4, 5, 6),      // Row 1
+    array(7, 8, 9)       // Row 2
+);
+
+// Access the value in the second row and third column
+$value = $matrix[1][2]; // Row 1, Column 2 (zero-based index)
+
+// Display the value
+echo "The value in the second row and third column is: $value";
+?>
