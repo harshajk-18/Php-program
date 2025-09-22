@@ -1,0 +1,38 @@
+<?php
+echo "<h2>PHP Regular Expressions - Examples</h2>";
+
+// 1. Simple Match
+echo "<b>1. Match 'php' in string:</b><br>";
+if (preg_match("/php/i", "I love PHP programming.")) {
+    echo "Match found!<br><br>";
+} else {
+    echo "No match found.<br><br>";
+}
+
+// 2. Extract All Numbers
+echo "<b>2. Extract numbers:</b><br>";
+preg_match_all("/\d+/", "Order numbers: 123, 456, and 789.", $matches);
+print_r($matches[0]);
+echo "<br><br>";
+
+// 3. Replace Spaces with Hyphen
+echo "<b>3. Replace spaces:</b><br>";
+$text = "Hello   World   PHP";
+echo "Before: $text<br>";
+echo "After: " . preg_replace("/\s+/", "-", $text) . "<br><br>";
+
+// 4. Validate Email
+echo "<b>4. Validate email:</b><br>";
+$email = "user@example.com";
+if (preg_match("/^[\w.-]+@[\w.-]+\.[a-z]{2,}$/i", $email)) {
+    echo "$email is valid.<br><br>";
+} else {
+    echo "$email is invalid.<br><br>";
+}
+
+// 5. Split String
+echo "<b>5. Split fruits string:</b><br>";
+$fruits = preg_split("/[\s,;]+/", "apple, banana; cherry orange");
+print_r($fruits);
+echo "<br>";
+?>
