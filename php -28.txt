@@ -1,0 +1,35 @@
+
+<?php
+// Define variables
+$a = 10;
+$b = "10";
+$c = 15;
+
+echo "<h2>Using var_dump() to Compare Variables</h2>";
+
+echo "Value of \$a: ";
+var_dump($a);
+echo "<br>";
+
+echo "Value of \$b: ";
+var_dump($b);
+echo "<br>";
+
+echo "Value of \$c: ";
+var_dump($c);
+echo "<br><br>";
+
+// Check if values are equal using ==
+echo "<strong>Equality (==) check:</strong><br>";
+var_dump($a == $b); // true because values are the same
+echo "<br>";
+var_dump($a == $c); // false
+echo "<br><br>";
+
+// Check if values and types are equal using ===
+echo "<strong>Identity (===) check:</strong><br>";
+var_dump($a === $b); // false because types differ (int vs string)
+echo "<br>";
+var_dump($a === $c); // false
+?>
+
