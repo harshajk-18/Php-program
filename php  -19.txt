@@ -1,0 +1,102 @@
+<?php
+// ------------------ Part 1: isset() Example ------------------
+$var1 = "Hello";
+$var2 = null;
+
+$issetOutput = [];
+if (isset($var1)) {
+    $issetOutput[] = "var1 is set.";
+} else {
+    $issetOutput[] = "var1 is NOT set or is NULL.";
+}
+
+if (isset($var2)) {
+    $issetOutput[] = "var2 is set.";
+} else {
+    $issetOutput[] = "var2 is NOT set or is NULL.";
+}
+
+if (isset($var1, $var2)) {
+    $issetOutput[] = "Both variables are set.";
+} else {
+    $issetOutput[] = "At least one variable is not set or is NULL.";
+}
+
+// Form handling using isset()
+$formMessage = "";
+if (isset($_POST['username'])) {
+    $username = trim($_POST['username']);
+    if ($username !== "") {
+        $formMessage = "Username entered: " . htmlspecialchars($username);
+    } else {
+        $formMessage = "Username field is empty.";
+    }
+} else {
+    $formMessage = "Please enter your username below.";
+}
+
+// ------------------ Part 2: Highest & Lowest in Array ------------------
+function findHighLow($numbers) {
+    if (empty($numbers)) {
+        return ["error" => "Array is empty"];
+    }
+    $highest = max($numbers);
+    $lowest = min($numbers);
+    return ["highest" => $highest, "lowest" => $lowest];
+}
+
+$numbersArray = [12, 45, 7, 89, 34, 22, 67];
+$result = findHighLow($numbersArray);
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>isset() & High-Low Array Example</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #333; margin-top: 30px; }
+    .section { padding: 15px; border: 1px solid #ccc; margin-bottom: 20px; border-radius: 5px; }
+    .result { font-weight: bold; margin-top: 10px; }
+    .error { color: red; }
+</style>
+</head>
+<body>
+
+<!-- Part 1: isset() Example -->
+<div class="section">
+    <h2>Basic isset() Checks</h2>
+    <?php
+    foreach ($issetOutput as $msg) {
+        echo $msg . "<br>";
+    }
+    ?>
+</div>
+
+<div class="section">
+    <h2>Form Handling with isset()</h2>
+    <form method="post">
+        <input type="text" name="username" placeholder="Enter name">
+        <button type="submit">Submit</button>
+    </form>
+    <div class="result"><?php echo $formMessage; ?></div>
+</div>
+
+<!-- Part 2: Highest & Lowest Values -->
+<div class="section">
+    <h2>Highest & Lowest in Array</h2>
+    <p><strong>Array Elements:</strong> <?php echo implode(", ", $numbersArray); ?></p>
+    <div class="result">
+        <?php
+        if (isset($result["error"])) {
+            echo $result["error"];
+        } else {
+            echo "Highest Value: " . $result["highest"] . "<br>";
+            echo "Lowest Value: " . $result["lowest"];
+        }
+        ?>
+    </div>
+</div>
+
+</body>
+</html>
