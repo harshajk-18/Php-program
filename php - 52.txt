@@ -1,0 +1,15 @@
+<?php
+// Stack (LIFO)
+$stack = ["A", "B", "C"];
+$popped = array_pop($stack);
+echo "Stack after pop:\n";
+print_r($stack);
+echo "Popped item: $popped\n\n";
+
+// Queue (FIFO)
+$queue = ["A", "B", "C"];
+$shifted = array_shift($queue);
+echo "Queue after dequeue:\n";
+print_r($queue);
+echo "Dequeued item: $shifted\n";
+?>
