@@ -1,0 +1,129 @@
+
+<?php
+// ------------------- PART 1: SUM FUNCTION -------------------
+function sum($a, $b) {
+    return $a + $b;
+}
+
+$sumResult = null;
+$sumError = '';
+
+if (isset($_POST['calculate_sum'])) {
+    $num1 = trim($_POST['num1']);
+    $num2 = trim($_POST['num2']);
+
+    if ($num1 === '' || $num2 === '') {
+        $sumError = 'Please enter both numbers.';
+    } elseif (!is_numeric($num1) || !is_numeric($num2)) {
+        $sumError = 'Both inputs must be valid numbers.';
+    } else {
+        $sumResult = sum((float)$num1, (float)$num2);
+    }
+}
+
+// ------------------- PART 2: BANK TRANSACTION SIMULATION -------------------
+$customerName = "Harsha";
+$balance = 5000;
+
+// Deposit function
+function deposit($amount, &$balance) {
+    if ($amount > 0) {
+        $balance += $amount;
+        return "Deposited ₹$amount successfully.";
+    } else {
+        return "Invalid deposit amount.";
+    }
+}
+
+// Withdraw function
+function withdraw($amount, &$balance) {
+    if ($amount <= 0) {
+        return "Invalid withdrawal amount.";
+    } elseif ($amount > $balance) {
+        return "Insufficient funds. Current balance: ₹$balance";
+    } else {
+        $balance -= $amount;
+        return "Withdrew ₹$amount successfully.";
+    }
+}
+
+// Example transactions
+$transactions = [
+    ["type" => "deposit", "amount" => 1500],
+    ["type" => "withdraw", "amount" => 2000],
+    ["type" => "withdraw", "amount" => 6000],
+    ["type" => "deposit", "amount" => -500],
+    ["type" => "withdraw", "amount" => 1000]
+];
+
+$transactionLogs = [];
+foreach ($transactions as $t) {
+    switch ($t["type"]) {
+        case "deposit":
+            $transactionLogs[] = deposit($t["amount"], $balance);
+            break;
+        case "withdraw":
+            $transactionLogs[] = withdraw($t["amount"], $balance);
+            break;
+        default:
+            $transactionLogs[] = "Invalid transaction type.";
+    }
+    $transactionLogs[] = "Current Balance: ₹$balance";
+}
+
+if ($balance >= 10000) {
+    $transactionLogs[] = "You have a high balance!";
+} elseif ($balance >= 5000) {
+    $transactionLogs[] = "Your balance is healthy.";
+} else {
+    $transactionLogs[] = "Low balance warning!";
+}
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PHP Sum & Bank Transactions</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #333; }
+    .section { margin-bottom: 40px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+    input, button { padding: 8px; font-size: 1rem; margin-top: 5px; }
+    .result { font-weight: bold; margin-top: 10px; }
+    .error { color: red; }
+</style>
+</head>
+<body>
+
+<!-- PART 1: Sum Calculator -->
+<div class="section">
+    <h2>Sum of Two Numbers</h2>
+    <form method="post">
+        <label>Number 1: <input type="number" name="num1" step="any" required value="<?php echo isset($_POST['num1']) ? htmlspecialchars($_POST['num1']) : ''; ?>"></label><br>
+        <label>Number 2: <input type="number" name="num2" step="any" required value="<?php echo isset($_POST['num2']) ? htmlspecialchars($_POST['num2']) : ''; ?>"></label><br>
+        <button type="submit" name="calculate_sum">Calculate Sum</button>
+    </form>
+    <?php
+    if ($sumError) {
+        echo "<div class='error'>$sumError</div>";
+    } elseif ($sumResult !== null) {
+        echo "<div class='result'>Result: $sumResult</div>";
+    }
+    ?>
+</div>
+
+<!-- PART 2: Bank Transaction Simulation -->
+<div class="section">
+    <h2>Bank Transaction Simulation</h2>
+    <p><strong>Customer Name:</strong> <?php echo $customerName; ?></p>
+    <p><strong>Initial Balance:</strong> ₹5000</p>
+    <hr>
+    <?php
+    foreach ($transactionLogs as $log) {
+        echo $log . "<br>";
+    }
+    ?>
+</div>
+
+</body>
+</html>
