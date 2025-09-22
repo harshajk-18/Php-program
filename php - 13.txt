@@ -1,0 +1,111 @@
+<?php
+// --- 1. Purchase Cost Calculator ---
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['item1_price'])) {
+    $price1 = $_POST['item1_price'];
+    $qty1 = $_POST['item1_qty'];
+    $price2 = $_POST['item2_price'];
+    $qty2 = $_POST['item2_qty'];
+    $price3 = $_POST['item3_price'];
+    $qty3 = $_POST['item3_qty'];
+
+    $subtotal = ($price1 * $qty1) + ($price2 * $qty2) + ($price3 * $qty3);
+    $tax = $subtotal * 0.10;
+    $total = $subtotal + $tax;
+
+    echo "<h3>Results:</h3>";
+    echo "Subtotal: ₹" . number_format($subtotal, 2) . "<br>";
+    echo "Tax (10%): ₹" . number_format($tax, 2) . "<br>";
+    echo "Total Cost: ₹" . number_format($total, 2) . "<br><hr>";
+}
+?>
+
+<!-- Purchase Cost Form -->
+<form method="post">
+    <h3>Purchase Calculator</h3>
+    Item 1 Price: <input type="number" name="item1_price" step="0.01"> Quantity: <input type="number" name="item1_qty"><br>
+    Item 2 Price: <input type="number" name="item2_price" step="0.01"> Quantity: <input type="number" name="item2_qty"><br>
+    Item 3 Price: <input type="number" name="item3_price" step="0.01"> Quantity: <input type="number" name="item3_qty"><br>
+    <input type="submit" value="Calculate">
+</form>
+<hr>
+
+<?php
+// --- 2. Greeting Form ---
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'])) {
+    $name = trim($_POST['username']);
+    if ($name == "") {
+        echo "Error: Name field cannot be blank.<hr>";
+    } else {
+        echo "Hello, Welcome to $name!<br>Have a nice day!!<hr>";
+    }
+}
+?>
+
+<form method="post">
+    <h3>Greeting Form</h3>
+    Enter your name: <input type="text" name="username">
+    <input type="submit" value="Greet Me">
+</form>
+<hr>
+
+<?php
+// --- 3. Soft Drink Comparison Function ---
+function deal($price, $size) {
+    return $price / $size; // price per liter
+}
+
+$drinkA = deal(25, 11);
+$drinkB = deal(23, 9);
+
+echo "<h3>Soft Drink Comparison</h3>";
+if ($drinkA < $drinkB) {
+    echo "Drink A is cheaper per liter.<hr>";
+} else {
+    echo "Drink B is cheaper per liter.<hr>";
+}
+
+// --- 4. Predict Output Snippet ---
+$thisVar = "this";
+$that = "that";
+$the_other = 2.2000000000;
+echo "<h3>Predict Output</h3>";
+echo "$thisVar,,";
+echo $that + $the_other; // "that" is treated as 0 in numeric context
+echo "<hr>";
+
+// --- 5. Student Grade Checker (Loop) ---
+$marksArray = [85, 65, 50, 30];
+echo "<h3>Student Grades</h3>";
+foreach ($marksArray as $marks) {
+    if ($marks >= 75) {
+        echo "Marks: $marks → First Class<br>";
+    } elseif ($marks >= 60) {
+        echo "Marks: $marks → Second Class<br>";
+    } elseif ($marks >= 40) {
+        echo "Marks: $marks → Third Class<br>";
+    } else {
+        echo "Marks: $marks → Fail<br>";
+    }
+}
+echo "<hr>";
+
+// --- 6. Days of the Week using Switch ---
+$dayNumber = 3; // Example: Wednesday
+echo "<h3>Day of the Week</h3>";
+switch ($dayNumber) {
+    case 1: echo "Monday"; break;
+    case 2: echo "Tuesday"; break;
+    case 3: echo "Wednesday"; break;
+    case 4: echo "Thursday"; break;
+    case 5: echo "Friday"; break;
+    case 6: echo "Saturday"; break;
+    case 7: echo "Sunday"; break;
+    default: echo "Invalid Day Number";
+}
+echo "<hr>";
+
+// --- 7. substr() Example ---
+$sub = substr("12345", 2, 2);
+echo "<h3>substr() Example</h3>";
+echo "sub is $sub<hr>";
+?>
