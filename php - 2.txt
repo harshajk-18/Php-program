@@ -1,0 +1,21 @@
+<?php
+// Set table size
+$size = 3;
+
+// Print header row
+echo "  ";
+for ($col = 1; $col <= $size; $col++) {
+    echo "$col ";
+}
+echo "\n";
+
+// Print division values row by row
+for ($row = 1; $row <= $size; $row++) {
+    echo "$row ";
+    for ($col = 1; $col <= $size; $col++) {
+        $result = round($row / $col, 2);
+        echo "$result ";
+    }
+    echo "\n";
+}
+?>
