@@ -1,0 +1,41 @@
+<?php
+// Function to check if a year is a leap year
+function isLeapYear($year) {
+    if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+        return true;
+    }
+    return false;
+}
+
+// Example usage
+$year = 2024; // You can change this value
+$result = isLeapYear($year);
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Leap Year Checker</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .result { font-size: 1.1rem; color: green; }
+</style>
+</head>
+<body>
+
+<h2>Leap Year Checker</h2>
+<p>Year: <?php echo $year; ?></p>
+
+<div class="result">
+    <?php
+        if ($result) {
+            echo "$year is a Leap Year ✅";
+        } else {
+            echo "$year is NOT a Leap Year ❌";
+        }
+    ?>
+</div>
+
+</body>
+</html>
