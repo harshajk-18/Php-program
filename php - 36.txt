@@ -1,0 +1,7 @@
+<?php
+// Create an array of fruits
+$fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+
+// Display the third element (index 2, since arrays are zero-based)
+echo $fruits[2];
+?>
