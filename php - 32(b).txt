@@ -1,0 +1,10 @@
+<?php
+// Define the array of names
+$names = array("alex", "jean", "emily", "jane");
+
+// Filter names that start with 'e'
+$name = preg_grep("/^e/", $names);
+
+// Print the matching names
+print_r($name);
+?>
