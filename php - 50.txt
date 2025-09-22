@@ -1,0 +1,13 @@
+<?php
+$fruits = ["Apple", "Banana", "Cherry", "Date"];
+
+// Convert all elements to lowercase
+$lowercase = array_map('strtolower', $fruits);
+
+// Convert all elements to uppercase
+$uppercase = array_map('strtoupper', $fruits);
+
+// Display results
+print_r($lowercase);
+print_r($uppercase);
+?>
