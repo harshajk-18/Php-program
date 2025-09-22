@@ -1,0 +1,45 @@
+<?php
+// ------------------ Part 1: Basic isset() Example ------------------
+$var1 = "Hello";
+$var2 = null;
+
+echo "<h2>Basic isset() Check</h2>";
+
+if (isset($var1)) {
+    echo "var1 is set.<br>";
+} else {
+    echo "var1 is NOT set or is NULL.<br>";
+}
+
+if (isset($var2)) {
+    echo "var2 is set.<br>";
+} else {
+    echo "var2 is NOT set or is NULL.<br>";
+}
+
+if (isset($var1, $var2)) {
+    echo "Both variables are set.<br>";
+} else {
+    echo "At least one variable is not set or is NULL.<br>";
+}
+
+// ------------------ Part 2: isset() in Form Handling ------------------
+echo "<hr><h2>Form Handling with isset()</h2>";
+
+if (isset($_POST['username'])) {
+    $username = trim($_POST['username']);
+    if ($username !== "") {
+        echo "Username entered: " . htmlspecialchars($username) . "<br>";
+    } else {
+        echo "Username field is empty.<br>";
+    }
+} else {
+    echo "Please enter your username below.<br>";
+}
+?>
+
+<!-- HTML Form -->
+<form method="post">
+    <input type="text" name="username" placeholder="Enter name">
+    <button type="submit">Submit</button>
+</form>
