@@ -1,0 +1,67 @@
+<?php
+echo "<h2>PHP String Functions Example</h2>";
+
+// Sample string
+$str = "  Hello World! PHP is awesome.  ";
+
+// Original string
+echo "Original String: '$str'<br><br>";
+
+// 1. Trim - Remove whitespace from both ends
+$trimmed = trim($str);
+echo "Trimmed String: '$trimmed'<br>";
+
+// 2. strlen - String length
+echo "String Length: " . strlen($trimmed) . "<br>";
+
+// 3. str_word_count - Count words
+echo "Word Count: " . str_word_count($trimmed) . "<br>";
+
+// 4. strrev - Reverse the string
+echo "Reversed String: " . strrev($trimmed) . "<br>";
+
+// 5. strtoupper - Convert to uppercase
+echo "Uppercase: " . strtoupper($trimmed) . "<br>";
+
+// 6. strtolower - Convert to lowercase
+echo "Lowercase: " . strtolower($trimmed) . "<br>";
+
+// 7. ucfirst - Uppercase first letter
+echo "Uppercase First Letter: " . ucfirst(strtolower($trimmed)) . "<br>";
+
+// 8. ucwords - Uppercase first letter of each word
+echo "Uppercase Each Word: " . ucwords(strtolower($trimmed)) . "<br>";
+
+// 9. strpos - Find position of a substring
+echo "Position of 'PHP': " . strpos($trimmed, "PHP") . "<br>";
+
+// 10. str_replace - Replace a word
+echo "Replace 'awesome' with 'powerful': " . str_replace("awesome", "powerful", $trimmed) . "<br>";
+
+// 11. substr - Get part of string
+echo "Substring (0-5): " . substr($trimmed, 0, 5) . "<br>";
+
+// 12. explode - Split string into array
+$words = explode(" ", $trimmed);
+echo "Exploded Array: <pre>";
+print_r($words);
+echo "</pre>";
+
+// 13. implode - Join array into string
+$joined = implode("-", $words);
+echo "Imploded String: $joined<br>";
+
+// 14. str_repeat - Repeat a string
+echo "Repeat 'PHP': " . str_repeat("PHP ", 3) . "<br>";
+
+// 15. htmlspecialchars - Convert special characters
+$sample_html = "<b>Bold Text</b>";
+echo "HTML Special Chars: " . htmlspecialchars($sample_html) . "<br>";
+
+// 16. addslashes - Add slashes before quotes
+$quote_str = "He said 'PHP is great!'";
+echo "Add Slashes: " . addslashes($quote_str) . "<br>";
+
+// 17. strip_tags - Remove HTML tags
+echo "Strip Tags: " . strip_tags($sample_html) . "<br>";
+?>
