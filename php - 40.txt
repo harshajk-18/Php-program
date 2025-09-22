@@ -1,0 +1,26 @@
+
+<?php
+// Original string
+$input = "Hello! This is a test, with special chars: @#$%^&*()_+123.";
+
+// Convert string to array of characters
+$chars = str_split($input);
+
+// Allowed characters: letters, digits, and space
+$allowed = array_merge(
+    range('a', 'z'),
+    range('A', 'Z'),
+    range('0', '9'),
+    [' ']
+);
+
+// Filter characters that are in allowed array
+$filteredChars = array_filter($chars, function($char) use ($allowed) {
+    return in_array($char, $allowed);
+});
+
+// Convert filtered array back to string
+$output = implode('', $filteredChars);
+
+echo $output;
+?>
