@@ -1,0 +1,10 @@
+<?php
+// Original array
+$fruits = ["apple", "banana", "cherry"];
+
+// Remove the first element
+array_shift($fruits);
+
+// Print the modified array
+print_r($fruits);
+?>
