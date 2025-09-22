@@ -1,0 +1,21 @@
+
+<?php
+$fruits = ["apple", "banana", "cherry", "date"];
+
+// Initialize pointer to first element
+reset($fruits);
+
+// Get current element
+$currentFruit = current($fruits);
+
+while ($currentFruit !== false) {
+    // Get the key of the current element
+    $key = key($fruits);
+
+    // Print key and value
+    echo "Key: $key; Value: $currentFruit\n";
+
+    // Move pointer to the next element
+    $currentFruit = next($fruits);
+}
+?>
