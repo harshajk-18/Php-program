@@ -1,0 +1,16 @@
+<?php
+// Initial array
+$items = ["b", "c"];
+
+// Add an element to the beginning using array_unshift()
+array_unshift($items, "a");
+echo "After array_unshift():\n";
+print_r($items); // [0 => "a", 1 => "b", 2 => "c"]
+
+// Remove the first element using array_shift()
+$removed = array_shift($items);
+echo "After array_shift():\n";
+print_r($items); // [0 => "b", 1 => "c"]
+echo "Removed element: $removed\n";
+?>
+
