@@ -1,0 +1,24 @@
+<?php
+// rand() example
+echo "<h3>rand() Function</h3>";
+echo "Random number between 1 and 100: " . rand(1, 100) . "<br><br>";
+
+// abs() example
+echo "<h3>abs() Function</h3>";
+echo "Absolute value of -15 is: " . abs(-15) . "<br><br>";
+
+// str_replace() example
+echo "<h3>str_replace() Function</h3>";
+$text = "I like apples";
+echo "Original text: $text <br>";
+echo "After replacement: " . str_replace("apples", "mangoes", $text) . "<br><br>";
+
+// pi() example
+echo "<h3>pi() Function</h3>";
+echo "The value of pi is: " . pi() . "<br><br>";
+
+// ceil() example
+echo "<h3>ceil() Function</h3>";
+echo "Ceil of 4.3 is: " . ceil(4.3) . "<br>";
+echo "Ceil of 7.1 is: " . ceil(7.1) . "<br>";
+?>
