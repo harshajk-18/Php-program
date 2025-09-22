@@ -1,0 +1,38 @@
+<?php
+$students = [
+    ["name" => "Alice", "scores" => [85, 90, 78]],
+    ["name" => "Bob", "scores" => [65, 70, 58]],
+    ["name" => "Charlie", "scores" => [95, 88, 92]],
+];
+
+echo "Student Grade Report:\n";
+echo "---------------------\n";
+
+$averages = [];
+
+foreach ($students as $student) {
+    $avg = array_sum($student['scores']) / count($student['scores']);
+    $avgRounded = round($avg, 2);
+    $averages[] = $avgRounded;
+
+    if ($avg >= 90) {
+        $grade = "A";
+    } elseif ($avg >= 80) {
+        $grade = "B";
+    } elseif ($avg >= 70) {
+        $grade = "C";
+    } elseif ($avg >= 60) {
+        $grade = "D";
+    } else {
+        $grade = "F";
+    }
+
+    echo "Name: {$student['name']}\n";
+    echo "Average Score: $avgRounded\n";
+    echo "Grade: $grade\n";
+    echo "---------------------\n";
+}
+
+$classAverage = array_sum($averages) / count($averages);
+echo "Class Average Score: " . round($classAverage, 2) . "\n";
+?>
