@@ -1,0 +1,17 @@
+<?php
+// Create an initial array
+$fruits = ["apple", "banana"];
+
+// Push new fruits to the end
+array_push($fruits, "cherry", "date");
+echo "After pushing: ";
+print_r($fruits);
+
+// Pop the last fruit
+$lastFruit = array_pop($fruits);
+echo "Popped element: $lastFruit\n";
+
+// Array after popping
+echo "After popping: ";
+print_r($fruits);
+?>
