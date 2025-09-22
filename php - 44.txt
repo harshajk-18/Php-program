@@ -1,0 +1,59 @@
+<?php
+$songs = [
+    ["id"=>101, "title"=>"Imagine", "artist"=>"John Lennon", "duration"=>183],
+    ["id"=>102, "title"=>"Hey Jude", "artist"=>"The Beatles", "duration"=>431],
+    ["id"=>103, "title"=>"Bohemian Rhapsody", "artist"=>"Queen", "duration"=>354],
+];
+
+$playlists = [];
+
+function createPlaylist(&$playlists, $name) {
+    if (isset($playlists[$name])) return false;
+    $playlists[$name] = ["name"=>$name, "songs"=>[]];
+    return true;
+}
+
+function addSong(&$playlists, $playlist, $song) {
+    if (!isset($playlists[$playlist])) return false;
+    foreach ($playlists[$playlist]['songs'] as $s) if ($s['id'] == $song['id']) return false;
+    $playlists[$playlist]['songs'][] = $song;
+    return true;
+}
+
+function removeSong(&$playlists, $playlist, $songId) {
+    if (!isset($playlists[$playlist])) return false;
+    $playlists[$playlist]['songs'] = array_filter($playlists[$playlist]['songs'], fn($s) => $s['id'] != $songId);
+    return true;
+}
+
+function display($playlist) {
+    echo "Playlist: {$playlist['name']}\nSongs:\n";
+    foreach ($playlist['songs'] as $s) echo "- {$s['title']} by {$s['artist']} ({$s['duration']}s)\n";
+    echo "\n";
+}
+
+function reorder(&$playlists, $playlist, $from, $to) {
+    if (!isset($playlists[$playlist])) return false;
+    $songs = &$playlists[$playlist]['songs'];
+    if (!isset($songs[$from], $songs[$to])) return false;
+    $song = $songs[$from];
+    array_splice($songs, $from, 1);
+    array_splice($songs, $to, 0, [$song]);
+    return true;
+}
+
+// Use
+createPlaylist($playlists, "Favorites");
+addSong($playlists, "Favorites", $songs[0]);
+addSong($playlists, "Favorites", $songs[1]);
+addSong($playlists, "Favorites", $songs[2]);
+
+display($playlists["Favorites"]);
+
+removeSong($playlists, "Favorites", 102);
+display($playlists["Favorites"]);
+
+reorder($playlists, "Favorites", 1, 0);
+display($playlists["Favorites"]);
+?>
+
