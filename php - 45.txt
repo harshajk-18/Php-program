@@ -1,0 +1,36 @@
+<?php
+function arrayDiffRecursive($array1, $array2) {
+    $difference = [];
+    foreach ($array1 as $key => $value) {
+        if (is_array($value)) {
+            if (!isset($array2[$key]) || !is_array($array2[$key])) {
+                $difference[$key] = $value;
+            } else {
+                $diff = arrayDiffRecursive($value, $array2[$key]);
+                if (!empty($diff)) {
+                    $difference[$key] = $diff;
+                }
+            }
+        } else {
+            if (!isset($array2[$key]) || $array2[$key] !== $value) {
+                $difference[$key] = $value;
+            }
+        }
+    }
+    return $difference;
+}
+
+// Example usage
+$arr1 = [
+    "a" => 1,
+    "b" => ["x" => 5, "y" => 10],
+    "c" => 3
+];
+
+$arr2 = [
+    "a" => 1,
+    "b" => ["x" => 5, "y" => 8],
+    "d" => 4
+];
+
+print_r(arrayDiffRecursive($arr1, $arr2));
