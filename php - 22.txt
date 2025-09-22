@@ -1,0 +1,76 @@
+<?php
+// Leap year checker function
+function isLeapYear($year) {
+    if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+        return true;
+    }
+    return false;
+}
+
+// Word occurrence counter function
+function countWordOccurrences($text, $word) {
+    return substr_count(strtolower($text), strtolower($word));
+}
+
+// Initialize results
+$leapYearResult = "";
+$wordCountResult = "";
+
+// Check leap year form submission
+if (isset($_POST['checkLeap'])) {
+    $year = $_POST['year'];
+    if (is_numeric($year)) {
+        $leapYearResult = isLeapYear($year) 
+            ? "$year is a Leap Year ✅" 
+            : "$year is NOT a Leap Year ❌";
+    } else {
+        $leapYearResult = "Please enter a valid year.";
+    }
+}
+
+// Check word occurrence form submission
+if (isset($_POST['countWord'])) {
+    $text = $_POST['text'];
+    $word = $_POST['word'];
+    if (!empty($text) && !empty($word)) {
+        $count = countWordOccurrences($text, $word);
+        $wordCountResult = "The word '$word' appears $count times.";
+    } else {
+        $wordCountResult = "Please enter both text and word.";
+    }
+}
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Leap Year & Word Counter</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    form { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; width: 350px; }
+    .result { font-weight: bold; color: green; margin-top: 5px; }
+</style>
+</head>
+<body>
+
+<h2>Leap Year Checker</h2>
+<form method="post">
+    Enter Year: <input type="text" name="year" required>
+    <button type="submit" name="checkLeap">Check Leap Year</button>
+</form>
+<div class="result"><?php echo $leapYearResult; ?></div>
+
+<hr>
+
+<h2>Word Occurrence Counter</h2>
+<form method="post">
+    Enter Text: <br>
+    <textarea name="text" rows="4" cols="40" required></textarea><br><br>
+    Enter Word to Search: <input type="text" name="word" required><br><br>
+    <button type="submit" name="countWord">Count Occurrences</button>
+</form>
+<div class="result"><?php echo $wordCountResult; ?></div>
+
+</body>
+</html>
