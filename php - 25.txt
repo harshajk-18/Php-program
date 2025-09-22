@@ -1,0 +1,11 @@
+<?php
+echo "<h2>Replace First Occurrence Example</h2>";
+
+$str = "The Thing will come to you soon";
+
+// Use preg_replace to replace only the first match (case-insensitive)
+$result = preg_replace('/the/i', 'best', $str, 1);
+
+echo "Original String: $str<br>";
+echo "Modified String: $result";
+?>
