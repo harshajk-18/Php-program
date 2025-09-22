@@ -1,0 +1,24 @@
+<?php
+function reverseStringUsingStack($input) {
+    $stack = [];
+    
+    // Push each character onto the stack
+    for ($i = 0; $i < strlen($input); $i++) {
+        array_push($stack, $input[$i]);
+    }
+    
+    $reversed = '';
+    
+    // Pop characters from the stack to build the reversed string
+    while (!empty($stack)) {
+        $reversed .= array_pop($stack);
+    }
+    
+    return $reversed;
+}
+
+// Example usage
+$string = "Hello, World!";
+echo "Original string: $string\n";
+echo "Reversed string: " . reverseStringUsingStack($string) . "\n";
+?>
