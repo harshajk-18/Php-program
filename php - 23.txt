@@ -1,0 +1,86 @@
+<?php
+// 1. Leap Year Checker Function
+function isLeapYear($year) {
+    return ($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0);
+}
+
+// 2. Word Occurrence Counter Function
+function countWordOccurrences($string, $word) {
+    return substr_count(strtolower($string), strtolower($word));
+}
+
+// 3. Handle GET search query
+if (isset($_GET['search'])) {
+    $searchTerm = htmlspecialchars($_GET['search']);
+    echo "<p>Showing results for: <b>$searchTerm</b></p>";
+}
+
+// 4. Handle POST contact form
+if (isset($_POST['submitContact'])) {
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    echo "<p>Thanks, $name! We will contact you at $email soon.</p>";
+}
+
+// 5. Handle Leap Year Form
+if (isset($_POST['checkLeapYear'])) {
+    $year = intval($_POST['year']);
+    if (isLeapYear($year)) {
+        echo "<p>$year is a Leap Year ✅</p>";
+    } else {
+        echo "<p>$year is NOT a Leap Year ❌</p>";
+    }
+}
+
+// 6. Handle Word Count Form
+if (isset($_POST['countWord'])) {
+    $text = $_POST['text'];
+    $word = $_POST['word'];
+    $count = countWordOccurrences($text, $word);
+    echo "<p>The word '<b>$word</b>' appears <b>$count</b> times in the given text.</p>";
+}
+?>
+
+<!doctype html>
+<html>
+<head>
+<title>Combined PHP Example</title>
+</head>
+<body>
+
+<h2>Search Products (GET)</h2>
+<form method="get">
+    Search: <input type="text" name="search">
+    <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<h2>Contact Us (POST)</h2>
+<form method="post">
+    Name: <input type="text" name="name" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    <button type="submit" name="submitContact">Send</button>
+</form>
+
+<hr>
+
+<h2>Leap Year Checker (POST)</h2>
+<form method="post">
+    Enter Year: <input type="number" name="year" required>
+    <button type="submit" name="checkLeapYear">Check</button>
+</form>
+
+<hr>
+
+<h2>Word Occurrence Counter (POST)</h2>
+<form method="post">
+    Enter Text:<br>
+    <textarea name="text" rows="4" cols="40" required></textarea><br><br>
+    Word to Count: <input type="text" name="word" required>
+    <button type="submit" name="countWord">Count</button>
+</form>
+
+</body>
+</html>
+
