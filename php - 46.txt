@@ -1,0 +1,23 @@
+
+<?php
+function findIndex($array, $value) {
+    $index = array_search($value, $array);
+    if ($index !== false) {
+        return $index;
+    } else {
+        return -1; // Not found
+    }
+}
+
+// Example usage
+$fruits = ["apple", "banana", "cherry", "date"];
+$searchValue = "cherry";
+
+$index = findIndex($fruits, $searchValue);
+
+if ($index !== -1) {
+    echo "Value '$searchValue' found at index $index.";
+} else {
+    echo "Value '$searchValue' not found in the array.";
+}
+?>
