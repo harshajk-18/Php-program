@@ -1,0 +1,81 @@
+<?php
+echo "<h2>PHP Array Sorting Functions Demo</h2>";
+
+$array = ["Banana", "apple", "Mango", "Cherry", "banana10", "banana2"];
+
+echo "<b>Original Array:</b><br>";
+print_r($array);
+echo "<hr>";
+
+// sort() - Ascending, reindexes keys
+$temp = $array;
+sort($temp);
+echo "<b>sort() - Ascending:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// rsort() - Descending, reindexes keys
+$temp = $array;
+rsort($temp);
+echo "<b>rsort() - Descending:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// asort() - Ascending by values, preserves keys
+$temp = $array;
+asort($temp);
+echo "<b>asort() - Ascending (Preserve Keys):</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// arsort() - Descending by values, preserves keys
+$temp = $array;
+arsort($temp);
+echo "<b>arsort() - Descending (Preserve Keys):</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// ksort() - Ascending by keys
+$temp = array_combine(range(1, count($array)), $array);
+ksort($temp);
+echo "<b>ksort() - Ascending Keys:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// krsort() - Descending by keys
+$temp = array_combine(range(1, count($array)), $array);
+krsort($temp);
+echo "<b>krsort() - Descending Keys:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// natsort() - Natural order
+$temp = $array;
+natsort($temp);
+echo "<b>natsort() - Natural Order:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// natcasesort() - Natural order (case-insensitive)
+$temp = $array;
+natcasesort($temp);
+echo "<b>natcasesort() - Natural Order (Case Insensitive):</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// usort() - Custom sort by string length
+$temp = $array;
+usort($temp, fn($a, $b) => strlen($a) <=> strlen($b));
+echo "<b>usort() - Custom Sort by String Length:</b><br>";
+print_r($temp);
+echo "<br><br>";
+
+// array_multisort() - Sorting multiple arrays
+$names = ["John", "Jane", "Dave"];
+$scores = [90, 80, 95];
+array_multisort($scores, SORT_DESC, $names);
+echo "<b>array_multisort() - Sort Scores Descending:</b><br>";
+print_r($names);
+print_r($scores);
+?>
+
