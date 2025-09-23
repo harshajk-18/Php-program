@@ -1,0 +1,16 @@
+<?php
+// Step 1: Set a cookie if it doesn't exist
+if (!isset($_COOKIE['username'])) {
+    setcookie("username", "Indira", time() + 3600, "/"); // Expires in 1 hour
+    echo "Cookie 'username' has been set.<br>";
+    echo "Refresh the page to read the cookie.<br>";
+} else {
+    // Step 2: Read the cookie
+    echo "Cookie 'username' value: " . $_COOKIE['username'] . "<br>";
+
+    // Step 3: Delete the cookie
+    setcookie("username", "", time() - 3600, "/");
+    echo "Cookie 'username' has been deleted.<br>";
+}
+?>
+
