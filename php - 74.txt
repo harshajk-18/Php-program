@@ -1,0 +1,18 @@
+<?php
+function appendLineToFile($filename, $newLine) {
+    // Ensure the line ends with a newline character
+    $newLine = rtrim($newLine) . PHP_EOL;
+
+    // Append the line to the file
+    if (file_put_contents($filename, $newLine, FILE_APPEND) !== false) {
+        echo "Line appended successfully to {$filename}.<br>";
+    } else {
+        echo "Error: Unable to append line to {$filename}.<br>";
+    }
+}
+
+// Example usage
+$filename = "myfile.txt";
+appendLineToFile($filename, "This is the first new line");
+appendLineToFile($filename, "This is another line");
+?>
