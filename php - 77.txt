@@ -1,0 +1,35 @@
+<?php
+echo "<h3>1. Hostname and IP Address Functions</h3>";
+$domain = "example.com";
+$ip = "93.184.216.34";
+
+echo "IP of $domain: " . gethostbyname($domain) . "<br>";
+echo "Hostname for IP $ip: " . gethostbyaddr($ip) . "<br>";
+echo "All IPs of $domain: ";
+print_r(gethostbynamel($domain));
+echo "<br>Current Server Hostname: " . gethostname() . "<br>";
+
+echo "<hr><h3>2. DNS Functions</h3>";
+if (checkdnsrr($domain, "MX")) {
+    echo "$domain has an MX record.<br>";
+} else {
+    echo "$domain does not have an MX record.<br>";
+}
+echo "DNS Records for $domain:<br>";
+print_r(dns_get_record($domain));
+
+echo "<hr><h3>3. Protocol and Service Functions</h3>";
+echo "Protocol number for TCP: " . getprotobyname("tcp") . "<br>";
+echo "Protocol name for 6: " . getprotobynumber(6) . "<br>";
+echo "Port number for HTTP: " . getservbyname("http", "tcp") . "<br>";
+echo "Service name for port 80: " . getservbyport(80, "tcp") . "<br>";
+
+echo "<hr><h3>4. Socket and Connection Functions</h3>";
+$fp = @fsockopen($domain, 80, $errno, $errstr, 5);
+if ($fp) {
+    echo "Connected successfully to $domain on port 80.<br>";
+    fclose($fp);
+} else {
+    echo "Connection failed: $errstr ($errno)<br>";
+}
+?>
