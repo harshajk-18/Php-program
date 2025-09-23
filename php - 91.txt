@@ -1,0 +1,20 @@
+<?php
+// Start the session
+session_start();
+
+// Store some data in the session
+$_SESSION['username'] = 'Indira';
+$_SESSION['role'] = 'Admin';
+
+// Display the session ID
+echo "<h3>Session ID:</h3> " . session_id();
+
+// Display where sessions are stored on the server
+echo "<h3>Session Save Path:</h3> " . session_save_path();
+
+// Display all session data
+echo "<h3>Session Data:</h3>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+?>
